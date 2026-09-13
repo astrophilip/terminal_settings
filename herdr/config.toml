@@ -1,0 +1,11 @@
+onboarding = false
+
+[experimental]
+kitty_graphics = true
+
+[theme.custom]
+accent = "#b3e1a7"          # active tab, borders
+surface0 = "#1e1e2d"        # inactive tabs
+panel_bg = "#1e1e2d"        # tab bar, popups
+sidebar_bg = "#181824"      # sidebar
+active_row_bg = "#1e1e2d"   # active sidebar row

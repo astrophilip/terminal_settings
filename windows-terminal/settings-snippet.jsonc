@@ -1,0 +1,10 @@
+// Merge into settings.json
+{
+  "profiles": {
+    "defaults": {
+      "colorScheme": "Ghostty Custom",
+      "intenseTextStyle": "bold",
+      "adjustIndistinguishableColors": "never"
+    }
+  }
+}

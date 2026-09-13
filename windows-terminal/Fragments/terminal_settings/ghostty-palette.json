@@ -1,0 +1,26 @@
+{
+  "schemes": [
+    {
+      "name": "Ghostty Custom",
+      "background": "#11111a",
+      "foreground": "#c9cad2",
+      "cursorColor": "#c9cad2",
+      "black": "#1e1e2d",
+      "red": "#cc6666",
+      "green": "#9aa251",
+      "yellow": "#d89f31",
+      "blue": "#7191ad",
+      "purple": "#9f81a9",
+      "cyan": "#6ea69f",
+      "white": "#c9cad2",
+      "brightBlack": "#6d7084",
+      "brightRed": "#d54e53",
+      "brightGreen": "#becb63",
+      "brightYellow": "#e2c557",
+      "brightBlue": "#92b4dc",
+      "brightPurple": "#c9a5da",
+      "brightCyan": "#88c6bb",
+      "brightWhite": "#e4e5ea"
+    }
+  ]
+}
