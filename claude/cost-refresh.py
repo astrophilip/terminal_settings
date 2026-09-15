@@ -132,8 +132,12 @@ def main():
     today = dt.date.today()
     session = mtd = ytd = 0.0
     unpriced = set()
-    for f in glob.glob(os.path.join(PROJECTS_DIR, "*", "*.jsonl")):
-        is_current = current is not None and os.path.abspath(f) == current
+    # Subagent transcripts sit under <project>/<session-id>/subagents/, so search
+    # recursively, and count a session's subagents toward that session.
+    current_subdir = os.path.splitext(current)[0] + os.sep if current else None
+    for f in glob.glob(os.path.join(PROJECTS_DIR, "**", "*.jsonl"), recursive=True):
+        f = os.path.abspath(f)
+        is_current = current is not None and (f == current or f.startswith(current_subdir))
         for day, usd in call_costs(f, pricing, models, unpriced):
             if is_current:
                 session += usd
