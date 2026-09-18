@@ -9,3 +9,17 @@ surface0 = "#1e1e2d"        # inactive tabs
 panel_bg = "#1e1e2d"        # tab bar, popups
 sidebar_bg = "#181824"      # sidebar
 active_row_bg = "#1e1e2d"   # active sidebar row
+
+# Herdr Annotate (Full) — document review with plannotator-tui. The Lite-style annotation keys
+# are intentionally unbound. prefix+o and prefix+shift+d are herdr defaults, so avoid those.
+[[keys.command]]
+key = "prefix+d"
+type = "plugin_action"
+command = "annotate.open"
+description = "review documents in this folder"
+
+[[keys.command]]
+key = "prefix+shift+o"
+type = "plugin_action"
+command = "annotate.last"
+description = "review the agent's last reply"
