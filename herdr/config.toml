@@ -10,6 +10,17 @@ panel_bg = "#1e1e2d"        # tab bar, popups
 sidebar_bg = "#181824"      # sidebar
 active_row_bg = "#1e1e2d"   # active sidebar row
 
+[keys]
+prefix = "ctrl+space"       # herdr default: ctrl+b
+
+# Cycle panes in order, wrapping; herdr's tab defaults kept alongside the arrows.
+cycle_pane_next = ["prefix+tab", "prefix+right"]
+cycle_pane_previous = ["prefix+shift+tab", "prefix+left"]
+
+# Tabs; herdr's prefix+n / prefix+p kept alongside the arrows.
+next_tab = ["prefix+n", "prefix+shift+right"]
+previous_tab = ["prefix+p", "prefix+shift+left"]
+
 # Herdr Annotate (Full) — document review with plannotator-tui. The Lite-style annotation keys
 # are intentionally unbound. prefix+o and prefix+shift+d are herdr defaults, so avoid those.
 [[keys.command]]
