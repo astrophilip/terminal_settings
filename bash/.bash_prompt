@@ -1,0 +1,60 @@
+# Colorized prompt configuration.
+# FORMAT : date and time            | user@host | directory
+# EXAMPLE: 2016/07/26 11:30 Tuesday   user@host  in  ~
+
+# user@host is magenta locally and violet in a shell reached over SSH. sshd sets these
+# variables on the remote side; a shell inside a remote herdr or tmux server sees them only
+# if that server was started from an SSH session.
+if [[ -n $SSH_CONNECTION || -n $SSH_TTY ]]; then
+  prompt_host_color=$solarized_violet
+else
+  prompt_host_color=$solarized_magenta
+fi
+
+_prompt_command() {
+  PS1=""
+
+  prompt_date=$(date '+%Y/%m/%d %H:%M %A')
+  prompt_username="\u@\h"
+  prompt_directory="\w"
+
+  PS1+="\[$solarized_yellow\]$prompt_date\[$color_reset\]  "
+  PS1+="\[$prompt_host_color\]$prompt_username\[$color_reset\] "
+  PS1+="\[$solarized_base\]in\[$color_reset\] "
+  PS1+="\[$solarized_cyan\]$prompt_directory\[$color_reset\] "
+
+  # Display git branch when in repo with helper message in appropriate color.
+  local git_status="$(git status 2>&1)"
+  if ! [[ "$git_status" =~ "fatal: not a git repo" ]]; then
+    if [[ "$git_status" =~ "Untracked files" ]] \
+          || [[ "$git_status" =~ "Changes not staged" ]]; then
+      local git_color=$solarized_red
+      local git_message="there's something to add"
+    elif [[ "$git_status" =~ "Changes to be committed" ]]; then
+      local git_color=$solarized_orange
+      local git_message="there's something to commit"
+    elif [[ "$git_status" =~ "Your branch is ahead of" ]]; then
+      local git_color=$solarized_yellow
+      local git_message="there's something to push"
+    else
+      local git_color=$solarized_green
+      local git_message="everything is up-to-date"
+    fi
+
+    if [[ "$git_status" =~ On\ branch\ ([^[:space:]]+) ]]; then
+        local git_branch=${BASH_REMATCH[1]}
+    else # Detached HEAD
+        local git_branch="(`git describe --all --contains --abbrev=4 HEAD 2> /dev/null || echo HEAD`)"
+    fi
+
+    PS1+="\[$solarized_base\]on\[$color_reset\] "
+    PS1+="\[$solarized_orange\]$git_branch\[$color_reset\] "
+    PS1+="\[$solarized_base\]where\[$color_reset\] "
+    PS1+="\[$git_color\]$git_message\[$color_reset\]"
+  fi
+
+  PS1+="\n\[$solarized_cyan\]⥤\[$color_reset\] "       # new line
+}
+PROMPT_COMMAND=_prompt_command
+
+PS2="\[$solarized_cyan\]⥤\[$color_reset\] "            # continued line after \

@@ -1,0 +1,32 @@
+# Use xterm-256color when TERM is unset/dumb (e.g. `ssh host cmd`) or this machine has no
+# terminfo for it (e.g. xterm-ghostty over SSH); otherwise keep the real TERM.
+if [[ $TERM == dumb ]] || ! infocmp "$TERM" >/dev/null 2>&1; then export TERM="xterm-256color"; fi
+
+# Solarized colors as 24-bit escapes, used by the prompt.
+export solarized_base="\e[38;2;147;161;161m"
+export solarized_yellow="\e[38;2;181;137;0m"
+export solarized_orange="\e[38;2;203;75;22m"
+export solarized_red="\e[38;2;220;50;47m"
+export solarized_magenta="\e[38;2;211;54;130m"
+export solarized_violet="\e[38;2;108;113;196m"
+export solarized_blue="\e[38;2;38;139;210m"
+export solarized_cyan="\e[38;2;42;161;152m"
+export solarized_green="\e[38;2;133;153;0m"
+export color_reset="\e[0m"
+
+export EDITOR='vim';
+
+# Locale
+export LANG='en_US.UTF-8';
+export LC_ALL='en_US.UTF-8';
+
+# Show bold text in man pages (section titles and flags) in a yellow close to solarized yellow.
+export LESS_TERMCAP_md=$(tput setaf 136);
+
+# Settings for `history`
+export HISTTIMEFORMAT='%Y/%m/%d %H:%M  '          # format history
+export HISTIGNORE="pwd:ls:history:ll:lt:la:lla"   # list of commands to ignore
+export HISTCONTROL='ignoredups';                    # ignore consecutive duplicates
+
+export HISTSIZE='32768';              # Increase Bash history size. Allow 32³ entries; the default is 500.
+export HISTFILESIZE="${HISTSIZE}";

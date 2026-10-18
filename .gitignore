@@ -1,0 +1,26 @@
+# This repo is public. Keep shell history, credentials and machine-specific files out of it.
+
+# Shell and tool history
+.*_history
+.bash_sessions/
+.lesshst
+.viminfo
+
+# Machine-specific overrides (e.g. a ~/.bash_local loaded by .bash_profile)
+*.local
+.bash_local
+
+# Credentials and keys
+.ssh/
+.gnupg/
+.aws/
+.netrc
+.env
+.env.*
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+
+# macOS
+.DS_Store

@@ -1,0 +1,40 @@
+# colored-stats and skip-completed-text need bash 4+ (e.g. Homebrew bash); macOS's
+# /bin/bash 3.2 ignores them.
+
+# Color completions by file type. Uses LS_COLORS.
+set colored-stats on
+
+# Show extra file information when completing, like `ls -F`
+set visible-stats on
+
+# Tab-completion ignores case
+set completion-ignore-case on
+
+# If multiple completion possibilites,
+# immediately show all possibilites
+# instead of ringing bell after one tab,
+# then showing possibilites.
+set show-all-if-ambiguous on
+
+# Completed names which are symbolic links to directories have a slash appended
+set mark-symlinked-directories on
+
+# If cursor is in the middle of text, don't duplicate completions.
+set skip-completed-text on
+
+# Allow UTF-8 input and output, instead of showing stuff like $'\0123\0456'
+set input-meta on
+set output-meta on
+set convert-meta off
+
+# Hides dot files from completion, unless dot is specified.
+set match-hidden-files off
+
+# Turn off bell alarm
+set bell-style none
+
+
+# Key bindings
+# Search history based on prefix.
+"\e[A": history-search-backward
+"\e[B": history-search-forward
