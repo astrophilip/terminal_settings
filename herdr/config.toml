@@ -21,6 +21,10 @@ cycle_pane_previous = ["prefix+shift+tab", "prefix+left"]
 next_tab = ["prefix+n", "prefix+shift+right"]
 previous_tab = ["prefix+p", "prefix+shift+left"]
 
+# prefix+o is taken by annotate.last-newest below, so release herdr's default
+# open_notification_target (jump to the latest notification's pane).
+open_notification_target = ""
+
 # ipython in a 60-40 side pane (the script does the split)
 [[keys.command]]
 key = "prefix+i"
@@ -29,7 +33,7 @@ command = "bash $HOME/.config/herdr/scripts/ipython-pane.sh"
 description = "ipython in a side pane"
 
 # Herdr Annotate (Full) — document review with plannotator-tui. The Lite-style annotation keys
-# are intentionally unbound. prefix+o and prefix+shift+d are herdr defaults, so avoid those.
+# are intentionally unbound. prefix+shift+d is a herdr default, so avoid it; prefix+o was freed above.
 [[keys.command]]
 key = "prefix+d"
 type = "plugin_action"
@@ -40,4 +44,10 @@ description = "review documents in this folder"
 key = "prefix+shift+o"
 type = "plugin_action"
 command = "annotate.last"
-description = "review the agent's last reply"
+description = "pick one of the agent's recent replies to review"
+
+[[keys.command]]
+key = "prefix+o"
+type = "plugin_action"
+command = "annotate.last-newest"
+description = "review the agent's newest reply"
