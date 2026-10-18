@@ -6,6 +6,7 @@
 | `windows-terminal/Fragments/terminal_settings/ghostty-palette.json` | `%LOCALAPPDATA%\Microsoft\Windows Terminal\Fragments\terminal_settings\ghostty-palette.json` |
 | `windows-terminal/settings-snippet.jsonc` | merge into `%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json` |
 | `herdr/config.toml` | macOS: `~/.config/herdr/config.toml` · Windows: `%APPDATA%\herdr\config.toml` |
+| `codex/config-snippet.toml` | merge into `~/.codex/config.toml` (Windows: `%USERPROFILE%\.codex\config.toml`) |
 | `claude/statusline-command.sh` | `~/.claude/statusline-command.sh` |
 | `claude/cost-refresh.py` | `~/.claude/cost-refresh.py` (same directory as the status line script) |
 | `claude/pricing.json` | `~/.claude/pricing.json` (same directory; update when API prices change) |

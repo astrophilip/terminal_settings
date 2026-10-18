@@ -1,0 +1,13 @@
+# Codex CLI footer, inspired by ../claude/statusline-command.sh.
+# Merge into $CODEX_HOME/config.toml (default: ~/.codex/config.toml).
+# If [tui] already exists, merge these keys into it instead of adding another.
+[tui]
+theme = "solarized-dark"    # Also applies to code blocks and diffs.
+status_line_use_colors = true
+status_line = [
+  "context-used",          # Used percentage, matching the Claude line's convention.
+  "context-window-size",   # Total context capacity in tokens.
+  "current-dir",
+  "git-branch",
+  "model-with-reasoning",
+]
