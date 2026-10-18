@@ -25,6 +25,10 @@ previous_tab = ["prefix+p", "prefix+shift+left"]
 # open_notification_target (jump to the latest notification's pane).
 open_notification_target = ""
 
+# Workspaces, in sidebar order.
+previous_workspace = "prefix+up"
+next_workspace = "prefix+down"
+
 # ipython in a 60-40 side pane (the script does the split)
 [[keys.command]]
 key = "prefix+i"
