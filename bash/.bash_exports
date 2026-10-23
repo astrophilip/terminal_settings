@@ -24,7 +24,17 @@ export LANG='en_US.UTF-8';
 export LC_ALL='en_US.UTF-8';
 
 # Show bold text in man pages (section titles and flags) in a yellow close to solarized yellow.
+# Only used when man pages fall back to less (bat not installed).
 export LESS_TERMCAP_md=$(tput setaf 136);
+
+# Page through bat (it hands off to `less -RF` itself). Man pages are stripped of overstrike
+# formatting first so bat can highlight them; git keeps less, which handles its colors cleanly.
+# Needs bat: `brew install bat`. Without it, the system defaults (less) stay in place.
+if command -v bat >/dev/null; then
+  export PAGER='bat --style=plain';
+  export MANPAGER="sh -c 'col -bx | bat --language=man --style=plain'";
+  export GIT_PAGER='less';
+fi
 
 # Settings for `history`
 export HISTTIMEFORMAT='%Y/%m/%d %H:%M  '          # format history

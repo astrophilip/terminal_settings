@@ -28,6 +28,8 @@ Copy the files in `bash/` to your home directory (`cp -i bash/.[!.]* ~`; `-i` as
 
 Installer-managed blocks are left out. If you use conda, run `conda init bash` after copying; it appends its block (with your install path) to `~/.bash_profile`. Homebrew is loaded from `/opt/homebrew`, its Apple Silicon location; on an Intel Mac change that line to `/usr/local/bin/brew`.
 
+`cat`, `PAGER` and `MANPAGER` use [bat](https://github.com/sharkdp/bat) when it is installed (`brew install bat`); without it they fall back to the system `cat` and `less`. Git keeps `less` either way.
+
 The prompt shows `user@host` in magenta locally and violet over SSH. The aliases and functions assume macOS (`ls -G`, `pmset`, `ioreg`).
 
 For the Claude Code status line, add to `~/.claude/settings.json`:

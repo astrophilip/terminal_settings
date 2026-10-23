@@ -1,3 +1,7 @@
+# Homebrew (Apple Silicon location; Intel Macs use /usr/local/bin/brew). Loaded first so the
+# files below can find brew-installed tools such as bat.
+if [ -x /opt/homebrew/bin/brew ]; then eval "$(/opt/homebrew/bin/brew shellenv)"; fi
+
 if [ -f ~/.bash_aliases ]; then . ~/.bash_aliases; fi
 if [ -f ~/.bash_functions ]; then . ~/.bash_functions; fi
 if [ -f ~/.bash_exports ]; then . ~/.bash_exports; fi
@@ -10,9 +14,6 @@ shopt -s histappend;
 shopt -s cdspell;
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
-
-# Homebrew (Apple Silicon location; Intel Macs use /usr/local/bin/brew)
-if [ -x /opt/homebrew/bin/brew ]; then eval "$(/opt/homebrew/bin/brew shellenv)"; fi
 
 export PATH="$HOME/.local/bin:$PATH"
 
