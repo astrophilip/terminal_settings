@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Claude Code status line:
-#   <context %>  <user> in <dir> on <branch> where <git state>  $<mtd> mtd, $<ytd> ytd
+#   <context %>  <user> in <dir> on <branch> where <git state>  $<cost> 30d
 #
 # Git state: ✗ untracked or unstaged changes, + staged changes, ↑ commits to
 # push, ✓ clean. The cost segment is an estimate built by cost-refresh.py.
@@ -56,8 +56,10 @@ if [ -n "$transcript_path" ] && [ -f "$cost_refresh" ] && command -v python3 >/d
     rmdir "$cost_lock" 2>/dev/null
   fi
   if [ $(( now - $(mtime "$cost_cache_sh") )) -ge "$cost_stale_after" ] && mkdir "$cost_lock" 2>/dev/null; then
-    ( python3 "$cost_refresh" "$transcript_path" >/dev/null 2>&1
-      rmdir "$cost_lock" 2>/dev/null ) &
+    # Detach from our stdout too: Claude Code reads the status line until EOF,
+    # so a refresher still holding the pipe would delay every redraw.
+    ( python3 "$cost_refresh" "$transcript_path"
+      rmdir "$cost_lock" ) </dev/null >/dev/null 2>&1 &
     disown 2>/dev/null || true
   fi
 
@@ -130,10 +132,9 @@ fi
 # Estimated API list-price cost. Not a bill: a claude.ai subscription is not
 # charged this, and transcript-derived totals run somewhat low because some
 # auxiliary Claude Code requests record no usage.
-if [ -n "$COST_MTD" ]; then
+if [ -n "$COST_30D" ]; then
   output+=" "
-  output+="${solarized_yellow}\$${COST_MTD}${color_reset} ${solarized_base}mtd,${color_reset} "
-  output+="${solarized_orange}\$${COST_YTD}${color_reset} ${solarized_base}ytd${color_reset}"
+  output+="${solarized_yellow}\$${COST_30D}${color_reset} ${solarized_base}30d${color_reset}"
 fi
 
 printf "%s\n" "$output"
