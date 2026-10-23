@@ -26,10 +26,13 @@ palette = 10=#becb63
 # bright yellow
 palette = 11=#e2c557
 # bright blue
-palette = 12=#92b4dc
+palette = 12=#5d81f6
 # bright magenta
 palette = 13=#c9a5da
 # bright cyan
 palette = 14=#88c6bb
 # bright white
 palette = 15=#e4e5ea
+
+# Draw bold text in the bright palette colors (e.g. bold dirs from LSCOLORS in bright blue).
+bold-color = bright

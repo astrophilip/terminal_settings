@@ -16,6 +16,9 @@ export color_reset="\e[0m"
 
 export EDITOR='vim';
 
+# Directories in bold blue (uppercase E); bold renders as bright blue via the terminal settings.
+export LSCOLORS='Exfxcxdxbxegedabagacad';
+
 # Locale
 export LANG='en_US.UTF-8';
 export LC_ALL='en_US.UTF-8';
