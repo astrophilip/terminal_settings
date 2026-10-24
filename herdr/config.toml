@@ -20,6 +20,10 @@ cycle_pane_previous = ["prefix+shift+tab", "prefix+left"]
 # Tabs; herdr's prefix+n / prefix+p kept alongside the arrows.
 next_tab = ["prefix+n", "prefix+shift+right"]
 previous_tab = ["prefix+p", "prefix+shift+left"]
+new_tab = "prefix+plus"     # herdr default: prefix+c
+
+# Detach on prefix+d, as in tmux (herdr default: prefix+q).
+detach = "prefix+d"
 
 # prefix+o is taken by annotate.last-newest below, so release herdr's default
 # open_notification_target (jump to the latest notification's pane).
@@ -36,14 +40,8 @@ type = "shell"
 command = "bash $HOME/.config/herdr/scripts/ipython-pane.sh"
 description = "ipython in a side pane"
 
-# Herdr Annotate (Full) — document review with plannotator-tui. The Lite-style annotation keys
-# are intentionally unbound. prefix+shift+d is a herdr default, so avoid it; prefix+o was freed above.
-[[keys.command]]
-key = "prefix+d"
-type = "plugin_action"
-command = "annotate.open"
-description = "review documents in this folder"
-
+# Herdr Annotate (Full) — document review with plannotator-tui. annotate.open and the Lite-style
+# annotation keys are intentionally unbound. prefix+o was freed above.
 [[keys.command]]
 key = "prefix+shift+o"
 type = "plugin_action"
