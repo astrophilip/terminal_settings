@@ -29,18 +29,3 @@ show_solarized() {
   printf "      \e[48;2;133;153;0m                      \e[0m\n"
   printf "\n\n"
 }
-
-# Power drawn from the adapter and used by the system, in watts (Apple laptops)
-powerstats() {
-  ioreg -rw0 -c AppleSmartBattery \
-    | grep -oE '"(SystemPowerIn|SystemLoad)"=[0-9]+' \
-    | sort -u \
-    | awk -F= '{gsub(/"/,"",$1); printf "%s: %.2f W\n", $1, $2/1000}'
-}
-
-# Turn the display off now (macOS)
-sleepdisplay() {
-    caffeinate -u -t 3
-    sleep 2
-    pmset displaysleepnow
-}

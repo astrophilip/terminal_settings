@@ -15,6 +15,33 @@ shopt -s cdspell;
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
+# conda's base env, without `conda init`: its block runs conda's Python twice per
+# shell (hook, then `conda activate base`; ~0.5s). conda.sh defines the same `conda`
+# function the hook prints, and the rest sets what `conda activate base` would.
+# The first install found wins; add yours to the list if it lives elsewhere.
+for __conda_root in "$HOME/miniconda3" "$HOME/miniforge3" "$HOME/anaconda3" \
+    "$HOME/opt/miniconda3" "$HOME/opt/anaconda3" /opt/miniconda3 /opt/anaconda3 /opt/conda; do
+  if [ -f "$__conda_root/etc/profile.d/conda.sh" ]; then
+    . "$__conda_root/etc/profile.d/conda.sh"
+    export CONDA_PREFIX="$__conda_root" CONDA_DEFAULT_ENV=base CONDA_SHLVL=1 CONDA_PROMPT_MODIFIER='(base) '
+    # Drop any inherited copy (e.g. herdr started from an activated shell) so
+    # `conda deactivate`, which removes one entry, leaves none.
+    __conda_bin=":$CONDA_PREFIX/bin:"
+    PATH=":$PATH:"
+    while [[ $PATH == *"$__conda_bin"* ]]; do PATH=${PATH//"$__conda_bin"/:}; done
+    PATH=${PATH#:}; PATH=${PATH%:}
+    export PATH="$CONDA_PREFIX/bin:$PATH"
+    # Packages' activation scripts, as `conda activate` runs them. A slow one here
+    # (conda's compiler packages, say) makes every new shell slow.
+    for __conda_script in "$CONDA_PREFIX"/etc/conda/activate.d/*.sh; do
+      if [ -f "$__conda_script" ]; then . "$__conda_script"; fi
+    done
+    break
+  fi
+done
+unset __conda_root __conda_bin __conda_script
+
 export PATH="$HOME/.local/bin:$PATH"
 
-# Installers such as `conda init bash` append their own blocks below this line.
+# Installers append their own blocks below this line. Don't run `conda init`: conda is
+# set up above, and its block would add the slow startup back.

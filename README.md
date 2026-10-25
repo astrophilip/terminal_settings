@@ -26,18 +26,20 @@ Restart Windows Terminal after adding the fragment.
 
 Based on [mac-settings](https://github.com/kevinyswong/mac-settings) dotfiles, including the Solarized git-aware prompt.
 
-Copy the files in `bash/` to your home directory (`cp -i bash/.[!.]* ~`; `-i` asks before overwriting), then open a new shell. Overwriting `~/.bash_profile` drops any blocks installers added to it, so copy those over first. Nothing needs filling in: paths use `~` or `$HOME`, and the prompt reads your user and host name from bash (`\u@\h`).
+Copy the files in `bash/` to your home directory and open a new shell. First move any installer blocks from your old `~/.bash_profile` into the new one, except conda's. Paths use `~` or `$HOME`, so nothing needs filling in. The prompt shows `user@host` in magenta locally and violet over SSH. The `ls` aliases assume macOS.
 
-Installer-managed blocks are left out. If you use conda, run `conda init bash` after copying; it appends its block (with your install path) to `~/.bash_profile`. Homebrew is loaded from `/opt/homebrew`, its Apple Silicon location; on an Intel Mac change that line to `/usr/local/bin/brew`.
+Homebrew is loaded from `/opt/homebrew` (Apple Silicon); on an Intel Mac, change that line to `/usr/local/bin/brew`.
 
-`cat`, `PAGER` and `MANPAGER` use [bat](https://github.com/sharkdp/bat) when it is installed (`brew install bat`); without it they fall back to the system `cat` and `less`. Git keeps `less` either way.
+`cat`, `PAGER` and `MANPAGER` use [bat](https://github.com/sharkdp/bat) if it's installed (`brew install bat`), otherwise `cat` and `less`. Git always uses `less`.
 
-The prompt shows `user@host` in magenta locally and violet over SSH. The aliases and functions assume macOS (`ls -G`, `pmset`, `ioreg`).
+Don't run `conda init bash`: its block adds about 0.5s to every new shell. Instead, `~/.bash_profile` finds conda in the usual places (add yours to the list if it lives elsewhere) and activates `base` directly. `conda activate` and `conda deactivate` work as usual. If shells get slow again, check `$CONDA_PREFIX/etc/conda/activate.d/`; conda's compiler packages, for example, add about 0.5s.
 
-For the Claude Code status line, add to `~/.claude/settings.json`:
+## Claude Code status line
+
+Add to `~/.claude/settings.json`:
 
 ```json
 "statusLine": { "type": "command", "command": "bash ~/.claude/statusline-command.sh" }
 ```
 
-If `CLAUDE_CONFIG_DIR` is set, use that directory instead of `~/.claude`. The status line needs `jq` and `git`; the cost segment also needs `python3`.
+If `CLAUDE_CONFIG_DIR` is set, use it instead of `~/.claude` here and in the table. Needs `jq` and `git`; the cost segment also needs `python3`.
