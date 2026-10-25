@@ -26,11 +26,11 @@ Restart Windows Terminal after adding the fragment.
 
 Based on [mac-settings](https://github.com/kevinyswong/mac-settings) dotfiles, including the Solarized git-aware prompt.
 
-Copy the files in `bash/` to your home directory and open a new shell. First move any installer blocks from your old `~/.bash_profile` into the new one, except conda's. Paths use `~` or `$HOME`, so nothing needs filling in. The prompt shows `user@host` in magenta locally and violet over SSH. The `ls` aliases assume macOS.
+Copy the files in `bash/` to your home directory and open a new shell. First move any installer blocks from your old `~/.bash_profile` into the new one, except conda's. The prompt shows `user@host` in magenta locally and violet over SSH.
 
-Homebrew is loaded from `/opt/homebrew` (Apple Silicon); on an Intel Mac, change that line to `/usr/local/bin/brew`.
+The same files work on macOS and Linux. On macOS, Homebrew is loaded from `/opt/homebrew` (Apple Silicon).
 
-`cat`, `PAGER` and `MANPAGER` use [bat](https://github.com/sharkdp/bat) if it's installed (`brew install bat`), otherwise `cat` and `less`. Git always uses `less`.
+`cat`, `PAGER` and `MANPAGER` use [bat](https://github.com/sharkdp/bat) if it's installed (`brew install bat` or `apt install bat`; Debian and Ubuntu name it `batcat`, which is picked up too), otherwise `cat` and `less`. Git always uses `less`.
 
 Don't run `conda init bash`: its block adds about 0.5s to every new shell. Instead, `~/.bash_profile` finds conda in the usual places (add yours to the list if it lives elsewhere) and activates `base` directly. `conda activate` and `conda deactivate` work as usual. If shells get slow again, check `$CONDA_PREFIX/etc/conda/activate.d/`; conda's compiler packages, for example, add about 0.5s.
 

@@ -1,6 +1,6 @@
-# Homebrew (Apple Silicon location; Intel Macs use /usr/local/bin/brew). Loaded first so the
-# files below can find brew-installed tools such as bat.
-if [ -x /opt/homebrew/bin/brew ]; then eval "$(/opt/homebrew/bin/brew shellenv)"; fi
+# Homebrew, on macOS only (Apple Silicon location). Loaded first so the files below can
+# find brew-installed tools such as bat.
+if [[ $OSTYPE == darwin* && -x /opt/homebrew/bin/brew ]]; then eval "$(/opt/homebrew/bin/brew shellenv)"; fi
 
 if [ -f ~/.bash_aliases ]; then . ~/.bash_aliases; fi
 if [ -f ~/.bash_functions ]; then . ~/.bash_functions; fi
