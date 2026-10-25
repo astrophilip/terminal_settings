@@ -6,6 +6,8 @@
 | `windows-terminal/Fragments/terminal_settings/ghostty-palette.json` | `%LOCALAPPDATA%\Microsoft\Windows Terminal\Fragments\terminal_settings\ghostty-palette.json` |
 | `windows-terminal/settings-snippet.jsonc` | merge into `%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json` |
 | `herdr/config.toml` | macOS: `~/.config/herdr/config.toml` · Windows: `%APPDATA%\herdr\config.toml` |
+| `herdr/scripts/ipython-pane.sh` | `~/.config/herdr/scripts/ipython-pane.sh` (side pane bound to `prefix+i`) |
+| `herdr/scripts/reconnect-machines.sh` | `~/.config/herdr/scripts/reconnect-machines.sh` (popup bound to `prefix+m`) |
 | `codex/config-snippet.toml` | merge into `~/.codex/config.toml` (Windows: `%USERPROFILE%\.codex\config.toml`) |
 | `claude/statusline-command.sh` | `~/.claude/statusline-command.sh` |
 | `claude/cost-refresh.py` | `~/.claude/cost-refresh.py` (same directory as the status line script) |

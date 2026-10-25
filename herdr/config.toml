@@ -53,3 +53,10 @@ key = "prefix+o"
 type = "plugin_action"
 command = "annotate.last-newest"
 description = "review the agent's newest reply"
+
+# Reconnect saved SSH machines stuck on "! auth" (passphrase prompt in a popup)
+[[keys.command]]
+key = "prefix+m"
+type = "popup"
+command = "bash $HOME/.config/herdr/scripts/reconnect-machines.sh"
+description = "reconnect machines that need SSH authentication"
