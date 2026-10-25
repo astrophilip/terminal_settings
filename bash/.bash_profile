@@ -15,9 +15,10 @@ shopt -s cdspell;
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-# conda's base env, without `conda init`: its block runs conda's Python twice per
-# shell (hook, then `conda activate base`; ~0.5s). conda.sh defines the same `conda`
-# function the hook prints, and the rest sets what `conda activate base` would.
+# Activate conda's base env without `conda init`. The lines `conda init` adds start conda's
+# Python twice per shell (once to set up the `conda` command, once for `conda activate base`),
+# about 0.5s. Here conda.sh sets up the same `conda` command without starting Python, and the
+# rest of the loop does what `conda activate base` would.
 # The first install found wins; add yours to the list if it lives elsewhere.
 for __conda_root in "$HOME/miniconda3" "$HOME/miniforge3" "$HOME/anaconda3" \
     "$HOME/opt/miniconda3" "$HOME/opt/anaconda3" /opt/miniconda3 /opt/anaconda3 /opt/conda; do
@@ -43,5 +44,5 @@ unset __conda_root __conda_bin __conda_script
 
 export PATH="$HOME/.local/bin:$PATH"
 
-# Installers append their own blocks below this line. Don't run `conda init`: conda is
-# set up above, and its block would add the slow startup back.
+# Installers append their own lines below. Don't run `conda init`: conda is set up above,
+# and the lines it adds would slow shell start up.

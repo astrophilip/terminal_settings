@@ -32,7 +32,7 @@ The same files work on macOS and Linux. On macOS, Homebrew is loaded from `/opt/
 
 `cat`, `PAGER` and `MANPAGER` use [bat](https://github.com/sharkdp/bat) if it's installed (`brew install bat` or `apt install bat`; Debian and Ubuntu name it `batcat`, which is picked up too), otherwise `cat` and `less`. Git always uses `less`.
 
-Don't run `conda init bash`: its block adds about 0.5s to every new shell. Instead, `~/.bash_profile` finds conda in the usual places (add yours to the list if it lives elsewhere) and activates `base` directly. `conda activate` and `conda deactivate` work as usual. If shells get slow again, check `$CONDA_PREFIX/etc/conda/activate.d/`; conda's compiler packages, for example, add about 0.5s.
+Don't run `conda init bash`: the code inserted here adds about 0.5s to every new shell. Instead, `~/.bash_profile` finds conda in the usual places (add yours to the list if it lives elsewhere) and activates `base` directly. `conda activate` and `conda deactivate` work as usual. If shells get slow again, check `$CONDA_PREFIX/etc/conda/activate.d/`; conda's compiler packages, for example, add about 0.5s.
 
 ## Claude Code status line
 
