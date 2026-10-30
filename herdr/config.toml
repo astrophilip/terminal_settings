@@ -33,12 +33,27 @@ open_notification_target = ""
 previous_workspace = "prefix+up"
 next_workspace = "prefix+down"
 
-# ipython in a 55-45 side pane (the script does the split)
+# Side panes. Waiting for the prompt stops the command echoing twice, and the new pane's
+# shell expands $AI_AGENT.
 [[keys.command]]
 key = "prefix+i"
 type = "shell"
-command = "bash $HOME/.config/herdr/scripts/ipython-pane.sh"
+command = '''
+p=$(herdr pane split --direction right --focus | jq -r .result.pane.pane_id)
+herdr pane wait-output "$p" --regex '\S' --timeout 5000 >/dev/null
+herdr pane run "$p" ipython
+'''
 description = "ipython in a side pane"
+
+[[keys.command]]
+key = "prefix+c"
+type = "shell"
+command = '''
+p=$(herdr pane split --direction right --focus | jq -r .result.pane.pane_id)
+herdr pane wait-output "$p" --regex '\S' --timeout 5000 >/dev/null
+herdr pane run "$p" '$AI_AGENT'
+'''
+description = "coding agent in a side pane"
 
 # Herdr Annotate (Full) — document review with plannotator-tui. annotate.open and the Lite-style
 # annotation keys are intentionally unbound. prefix+o was freed above.

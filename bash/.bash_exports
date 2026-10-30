@@ -15,6 +15,7 @@ export solarized_green="\e[38;2;133;153;0m"
 export color_reset="\e[0m"
 
 export EDITOR='vim';
+export AI_AGENT='claude';
 
 # Directories in bold blue (uppercase E); bold renders as bright blue via the terminal settings.
 # LSCOLORS is for macOS ls, LS_COLORS the same scheme for GNU ls on Linux.
