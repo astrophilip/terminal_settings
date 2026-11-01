@@ -33,6 +33,13 @@ open_notification_target = ""
 previous_workspace = "prefix+up"
 next_workspace = "prefix+down"
 
+# Resize the focused pane in one keystroke (hold to repeat), with no resize mode to leave.
+# Plain alt/ctrl/shift+arrows are taken by Ghostty word-jump, macOS Spaces and selection.
+resize_pane_left = "alt+shift+left"
+resize_pane_down = "alt+shift+down"
+resize_pane_up = "alt+shift+up"
+resize_pane_right = "alt+shift+right"
+
 # Side panes. Waiting for the prompt stops the command echoing twice, and the new pane's
 # shell expands $AI_AGENT.
 [[keys.command]]
