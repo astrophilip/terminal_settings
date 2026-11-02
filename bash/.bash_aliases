@@ -18,6 +18,9 @@ elif type -P batcat >/dev/null; then
 fi
 alias v="vim"
 alias functions="declare -f | grep '()'"
+# macOS top is setuid root, so ncurses ignores TERMINFO and ~/.terminfo and can't find
+# Ghostty's xterm-ghostty entry ("Error opening terminal"). Give it a TERM it knows.
+if [[ $OSTYPE == darwin* ]]; then alias top="TERM=xterm-256color top"; fi
 
 # Colored ls: macOS (BSD) ls takes -G; GNU ls on Linux takes --color (and reads -G as --no-group).
 if [[ $OSTYPE == darwin* ]]; then __ls_color="-G"; else __ls_color="--color=auto"; fi
