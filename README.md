@@ -21,6 +21,10 @@
 
 Restart Windows Terminal after adding the fragment.
 
+## herdr
+
+The herdr prefix is `ctrl+space`. macOS binds that to "Select the previous input source" by default and swallows it before it reaches the terminal, so turn it off in System Settings → Keyboard → Keyboard Shortcuts… → Input Sources.
+
 ## Bash
 
 Based on [mac-settings](https://github.com/kevinyswong/mac-settings) dotfiles, including the Solarized git-aware prompt.

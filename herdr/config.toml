@@ -12,6 +12,8 @@ active_row_bg = "#1e1e2d"   # active sidebar row
 
 [keys]
 prefix = "ctrl+space"       # herdr default: ctrl+b
+# On macOS, turn off ctrl+space for "Select the previous input source" in
+# System Settings > Keyboard > Keyboard Shortcuts > Input Sources (see README).
 
 # Cycle panes in order, wrapping; herdr's tab defaults kept alongside the arrows.
 cycle_pane_next = ["prefix+tab", "prefix+right"]
