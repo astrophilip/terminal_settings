@@ -28,3 +28,6 @@ id_ed25519*
 # Python bytecode
 __pycache__/
 *.pyc
+
+# vim swap files
+*.swp
