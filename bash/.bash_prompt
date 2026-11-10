@@ -55,6 +55,8 @@ _prompt_command() {
 
   PS1+="\n\[$solarized_cyan\]⥤\[$color_reset\] "       # new line
 }
-PROMPT_COMMAND=_prompt_command
+# Write each command to the history file as soon as it finishes, so other terminals and a
+# terminal that gets killed don't lose it. Up-arrow stays local: the file isn't read back.
+PROMPT_COMMAND='history -a; _prompt_command'
 
 PS2="\[$solarized_cyan\]⥤\[$color_reset\] "            # continued line after \

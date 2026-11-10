@@ -36,3 +36,9 @@ palette = 15=#e4e5ea
 
 # Draw bold text in the bright palette colors (e.g. bold dirs from LSCOLORS in bright blue).
 bold-color = bright
+
+# Hand ctrl+tab / ctrl+shift+tab to herdr (which cycles its tabs with them) instead of
+# Ghostty's own tabs; those still cycle with cmd+shift+] and cmd+shift+[. Sent as the
+# kitty-protocol key codes so herdr can tell them from a plain Tab even in a shell pane.
+keybind = ctrl+tab=csi:9;5u
+keybind = ctrl+shift+tab=csi:9;6u

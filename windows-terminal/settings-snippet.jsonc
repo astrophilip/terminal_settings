@@ -6,5 +6,22 @@
       "intenseTextStyle": "bold",
       "adjustIndistinguishableColors": "never"
     }
-  }
+  },
+
+  // ctrl+tab / ctrl+shift+tab go to herdr (which cycles its tabs with them, see
+  // herdr/config.toml) instead of Windows Terminal's own tabs; those are still reachable
+  // with ctrl+alt+1..9. The keys are sent as kitty-protocol key codes so herdr can tell
+  // them from a plain Tab even in a shell pane. Same trick as in ghostty/config.ghostty.
+  "actions": [
+    { "command": { "action": "sendInput", "input": "\u001b[9;5u" }, "id": "User.HerdrNextTab" },
+    { "command": { "action": "sendInput", "input": "\u001b[9;6u" }, "id": "User.HerdrPrevTab" }
+  ],
+  "keybindings": [
+    { "keys": "ctrl+tab", "id": "User.HerdrNextTab" },
+    { "keys": "ctrl+shift+tab", "id": "User.HerdrPrevTab" },
+    // ctrl+shift+up/down cycle herdr workspaces; by default Windows Terminal uses them to
+    // scroll a line (ctrl+shift+pgup/pgdn and the mouse wheel still scroll).
+    { "keys": "ctrl+shift+up", "id": "unbound" },
+    { "keys": "ctrl+shift+down", "id": "unbound" }
+  ]
 }

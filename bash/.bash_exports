@@ -46,5 +46,7 @@ export HISTTIMEFORMAT='%Y/%m/%d %H:%M  '          # format history
 export HISTIGNORE="pwd:ls:history:ll:lt:la:lla"   # list of commands to ignore
 export HISTCONTROL='ignoredups';                    # ignore consecutive duplicates
 
-export HISTSIZE='32768';              # Increase Bash history size. Allow 32³ entries; the default is 500.
-export HISTFILESIZE="${HISTSIZE}";
+# Keep unlimited history. Empty values mean "no limit" in every bash version;
+# don't use -1, which bash 3.2 (macOS /bin/bash) treats as 0 and wipes history.
+export HISTSIZE=
+export HISTFILESIZE=
