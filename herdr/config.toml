@@ -15,15 +15,14 @@ prefix = "ctrl+space"       # herdr default: ctrl+b
 # On macOS, turn off ctrl+space for "Select the previous input source" in
 # System Settings > Keyboard > Keyboard Shortcuts > Input Sources (see README).
 
-# Cycle panes in order, wrapping; herdr's tab defaults kept alongside the arrows.
-# ctrl+shift+left/right need no prefix.
-cycle_pane_next = ["prefix+tab", "prefix+right", "ctrl+shift+right"]
-cycle_pane_previous = ["prefix+shift+tab", "prefix+left", "ctrl+shift+left"]
+# Cycle panes in order, wrapping. alt+shift+left/right need no prefix.
+cycle_pane_next = ["prefix+right", "alt+shift+right"]
+cycle_pane_previous = ["prefix+left", "alt+shift+left"]
 
-# Tabs; herdr's prefix+n / prefix+p kept alongside the arrows. ctrl+tab / ctrl+shift+tab
-# need no prefix; Ghostty's own binding of those keys is removed in the Ghostty config.
-next_tab = ["prefix+n", "prefix+shift+right", "ctrl+tab"]
-previous_tab = ["prefix+p", "prefix+shift+left", "ctrl+shift+tab"]
+# Tabs (herdr defaults prefix+n / prefix+p dropped). ctrl+tab / ctrl+shift+tab need no
+# prefix; Ghostty's own binding of those keys is removed in the Ghostty config.
+next_tab = ["prefix+tab", "prefix+shift+right", "ctrl+tab"]
+previous_tab = ["prefix+shift+tab", "prefix+shift+left", "ctrl+shift+tab"]
 new_tab = "prefix+plus"     # herdr default: prefix+c
 
 # Detach on prefix+d, as in tmux (herdr default: prefix+q).
@@ -33,16 +32,16 @@ detach = "prefix+d"
 # open_notification_target (jump to the latest notification's pane).
 open_notification_target = ""
 
-# Workspaces, in sidebar order.
-previous_workspace = ["prefix+up", "ctrl+shift+up"]
-next_workspace = ["prefix+down", "ctrl+shift+down"]
+# Workspaces, in sidebar order. alt+shift+up/down need no prefix.
+previous_workspace = ["prefix+up", "alt+shift+up"]
+next_workspace = ["prefix+down", "alt+shift+down"]
 
 # Resize the focused pane in one keystroke (hold to repeat), with no resize mode to leave.
 # Plain alt/ctrl/shift+arrows are taken by Ghostty word-jump, macOS Spaces and selection.
-resize_pane_left = "alt+shift+left"
-resize_pane_down = "alt+shift+down"
-resize_pane_up = "alt+shift+up"
-resize_pane_right = "alt+shift+right"
+resize_pane_left = "ctrl+shift+left"
+resize_pane_down = "ctrl+shift+down"
+resize_pane_up = "ctrl+shift+up"
+resize_pane_right = "ctrl+shift+right"
 
 # Side panes. Waiting for the prompt stops the command echoing twice, and the new pane's
 # shell expands $AI_AGENT.

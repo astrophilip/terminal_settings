@@ -19,9 +19,17 @@
   "keybindings": [
     { "keys": "ctrl+tab", "id": "User.HerdrNextTab" },
     { "keys": "ctrl+shift+tab", "id": "User.HerdrPrevTab" },
-    // ctrl+shift+up/down cycle herdr workspaces; by default Windows Terminal uses them to
-    // scroll a line (ctrl+shift+pgup/pgdn and the mouse wheel still scroll).
+    // ctrl+shift+arrows resize herdr panes; by default Windows Terminal uses up/down to
+    // scroll a line (ctrl+shift+pgup/pgdn and the mouse wheel still scroll) and leaves
+    // left/right unbound.
     { "keys": "ctrl+shift+up", "id": "unbound" },
-    { "keys": "ctrl+shift+down", "id": "unbound" }
+    { "keys": "ctrl+shift+down", "id": "unbound" },
+    // alt+shift+left/right cycle herdr panes and alt+shift+up/down its workspaces; by default
+    // Windows Terminal uses them to resize its own panes (alt+shift+plus / alt+shift+- still
+    // split, alt+arrows still move focus).
+    { "keys": "alt+shift+up", "id": "unbound" },
+    { "keys": "alt+shift+down", "id": "unbound" },
+    { "keys": "alt+shift+left", "id": "unbound" },
+    { "keys": "alt+shift+right", "id": "unbound" }
   ]
 }
