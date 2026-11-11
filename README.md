@@ -19,7 +19,6 @@
 | `bash/.bash_prompt` | `~/.bash_prompt` |
 | `bash/.inputrc` | `~/.inputrc` |
 | `vim/.vimrc` | `~/.vimrc` |
-| `vim/colors/ghostty.vim` | `~/.vim/colors/ghostty.vim` (colorscheme drawn from the Ghostty palette) |
 
 Restart Windows Terminal after adding the fragment.
 

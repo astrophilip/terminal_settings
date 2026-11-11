@@ -1,72 +1,26 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Colors and Fonts
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-syntax enable
-" Quiet scheme built from the Ghostty palette (vim/colors/ghostty.vim)
-colorscheme ghostty
+" Keep Vim's own sensible defaults (incsearch, wildmenu, mouse, ruler, filetype plugins)
+unlet! skip_defaults_vim
+source $VIMRUNTIME/defaults.vim
 
-set encoding=utf8
+" 16 palette colors only, so highlighting follows the terminal palette
+set notermguicolors
+set t_Co=16
+colorscheme default
+set background=dark
+highlight Comment ctermfg=2
+highlight LineNr ctermfg=8
+highlight CursorLine cterm=NONE ctermbg=0
+highlight CursorLineNr cterm=NONE ctermfg=7 ctermbg=0
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Appearance
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Show the filename in the window titlebar
-set title
+set laststatus=2            " always show the status line (filename, flags, position)
+set number                  " line numbers
+set cursorline              " highlight the current line
+set tabstop=4 shiftwidth=4 expandtab
+set hlsearch ignorecase     " highlight matches; case-insensitive search
+set showmatch               " flash the matching bracket
+set title                   " filename in the terminal title bar
 
-" Visual autocomplete for command menu
-set wildmenu
+" Vim only knows .bash_profile and .bash_aliases; treat the other dotfiles as bash too
+autocmd BufRead,BufNewFile .bash_* set filetype=bash
 
-" Highlight current line
-set cursorline
-
-" Enable line numbers
-set number
-
-" Change tabs to 2 spaces
-set tabstop=2
-        
-" Tabs convert to spaces
-set expandtab
-
-" Highlight searches
-set hlsearch
-
-" Ignore case of searches
-set ignorecase
-
-" Highlight dynamically as pattern is typed
-set incsearch
-
-" Optimize for fast terminal connections
-set ttyfast
-
-" When cursor is on a brace, highlights its matching brace
-set showmatch
-
-" Enable mouse in all modes
-" Drawback is that to copy, need to hold OPTION.
-" Otherwise, copying enters visual mode.
-set mouse=a
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Status bar. Options available at :h statusline
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Always show status bar
-set laststatus=2
-
-" Status bar contents: file path and flags on the left, position on the right
-set statusline=%1*%F                                        " file path
-set statusline+=\ %2*%m                                     " modified
-set statusline+=%3*%r                                       " read only
-set statusline+=%0*%=                                       " right aligned items
-set statusline+=Line:\ %1*%l%0*/%1*%L                       " line / total lines
-set statusline+=\ %0*(%1*%p%%%0*)                           " percent through file
-set statusline+=\ \ %0*Col:\ %1*%c\                        " column
-
-" Status bar colors (User1-3) are set in the colorscheme.
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Mappings
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remove vim recording
 map q <Nop>
