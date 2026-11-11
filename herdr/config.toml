@@ -43,13 +43,22 @@ resize_pane_down = "ctrl+shift+down"
 resize_pane_up = "ctrl+shift+up"
 resize_pane_right = "ctrl+shift+right"
 
-# Side panes. Waiting for the prompt stops the command echoing twice, and the new pane's
-# shell expands $AI_AGENT.
+# New pane in a fixed shape: the first split goes right, later ones stack down the
+# right-hand column, leaving the left pane alone (scripts/split-pane.sh). herdr's own
+# prefix+v / prefix+minus still split the focused pane either way.
+[[keys.command]]
+key = "prefix+n"
+type = "shell"
+command = 'bash "$HOME/.config/herdr/scripts/split-pane.sh" >/dev/null'
+description = "new pane (right, then stacked on the right)"
+
+# Side panes, placed the same way. Waiting for the prompt stops the command echoing twice,
+# and the new pane's shell expands $AI_AGENT.
 [[keys.command]]
 key = "prefix+i"
 type = "shell"
 command = '''
-p=$(herdr pane split --direction right --focus | jq -r .result.pane.pane_id)
+p=$(bash "$HOME/.config/herdr/scripts/split-pane.sh")
 herdr pane wait-output "$p" --regex '\S' --timeout 5000 >/dev/null
 herdr pane run "$p" ipython
 '''
@@ -59,7 +68,7 @@ description = "ipython in a side pane"
 key = "prefix+c"
 type = "shell"
 command = '''
-p=$(herdr pane split --direction right --focus | jq -r .result.pane.pane_id)
+p=$(bash "$HOME/.config/herdr/scripts/split-pane.sh")
 herdr pane wait-output "$p" --regex '\S' --timeout 5000 >/dev/null
 herdr pane run "$p" '$AI_AGENT'
 '''
