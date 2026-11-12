@@ -42,3 +42,20 @@ bold-color = bright
 # kitty-protocol key codes so herdr can tell them from a plain Tab even in a shell pane.
 keybind = ctrl+tab=csi:9;5u
 keybind = ctrl+shift+tab=csi:9;6u
+
+# cmd+shift+arrows do what alt+shift+arrows do in herdr (cycle panes left/right, switch
+# workspaces up/down): cmd sits where alt does on a PC keyboard, as with cmd+tab / alt+tab.
+# Sent as the alt+shift arrow codes so herdr/config.toml stays the same on every platform.
+# Replaces Ghostty's cmd+shift+up/down (jump to previous/next prompt).
+keybind = super+shift+left=csi:1;4D
+keybind = super+shift+right=csi:1;4C
+keybind = super+shift+up=csi:1;4A
+keybind = super+shift+down=csi:1;4B
+
+# cmd+shift+n / i / c / o open herdr's side panes (new pane, ipython, coding agent, review of
+# the agent's newest reply), which herdr/config.toml binds to alt+shift+n / i / c / o. Sent as
+# those alt+shift letters in kitty-protocol form (code;4u = shift+alt), for the same reason.
+keybind = super+shift+n=csi:110;4u
+keybind = super+shift+i=csi:105;4u
+keybind = super+shift+c=csi:99;4u
+keybind = super+shift+o=csi:111;4u

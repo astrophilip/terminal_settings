@@ -36,6 +36,12 @@ open_notification_target = ""
 previous_workspace = ["prefix+up", "alt+shift+up"]
 next_workspace = ["prefix+down", "alt+shift+down"]
 
+# Horizontal split on prefix+h as well as herdr's prefix+minus. prefix+h was herdr's
+# focus_pane_left; that and focus_pane_right are dropped (alt+shift+left/right cycle panes).
+split_horizontal = ["prefix+h", "prefix+minus"]
+focus_pane_left = ""
+focus_pane_right = ""
+
 # Resize the focused pane in one keystroke (hold to repeat), with no resize mode to leave.
 # Plain alt/ctrl/shift+arrows are taken by Ghostty word-jump, macOS Spaces and selection.
 resize_pane_left = "ctrl+shift+left"
@@ -45,9 +51,11 @@ resize_pane_right = "ctrl+shift+right"
 
 # New pane in a fixed shape: the first split goes right, later ones stack down the
 # right-hand column, leaving the left pane alone (scripts/split-pane.sh). herdr's own
-# prefix+v / prefix+minus still split the focused pane either way.
+# prefix+v / prefix+h still split the focused pane either way. The side-pane commands
+# here also take alt+shift+letter with no prefix; on macOS Ghostty sends that for
+# cmd+shift+letter (see ghostty/config.ghostty), like the alt+shift arrows above.
 [[keys.command]]
-key = "prefix+n"
+key = ["prefix+n", "alt+shift+n"]
 type = "shell"
 command = 'bash "$HOME/.config/herdr/scripts/split-pane.sh" >/dev/null'
 description = "new pane (right, then stacked on the right)"
@@ -55,7 +63,7 @@ description = "new pane (right, then stacked on the right)"
 # Side panes, placed the same way. Waiting for the prompt stops the command echoing twice,
 # and the new pane's shell expands $AI_AGENT.
 [[keys.command]]
-key = "prefix+i"
+key = ["prefix+i", "alt+shift+i"]
 type = "shell"
 command = '''
 p=$(bash "$HOME/.config/herdr/scripts/split-pane.sh")
@@ -65,7 +73,7 @@ herdr pane run "$p" ipython
 description = "ipython in a side pane"
 
 [[keys.command]]
-key = "prefix+c"
+key = ["prefix+c", "alt+shift+c"]
 type = "shell"
 command = '''
 p=$(bash "$HOME/.config/herdr/scripts/split-pane.sh")
@@ -75,17 +83,19 @@ herdr pane run "$p" '$AI_AGENT'
 description = "coding agent in a side pane"
 
 # Herdr Annotate (Full) — document review with plannotator-tui. annotate.open and the Lite-style
-# annotation keys are intentionally unbound. prefix+o was freed above.
+# annotation keys are intentionally unbound. prefix+o was freed above. Both keys run
+# scripts/annotate-pane.sh, which opens the review pane in the split-pane.sh shape (the
+# plugin's own actions only split beside the agent's pane; see the script and herdr-shim.sh).
 [[keys.command]]
 key = "prefix+shift+o"
-type = "plugin_action"
-command = "annotate.last"
+type = "shell"
+command = 'bash "$HOME/.config/herdr/scripts/annotate-pane.sh"'
 description = "pick one of the agent's recent replies to review"
 
 [[keys.command]]
-key = "prefix+o"
-type = "plugin_action"
-command = "annotate.last-newest"
+key = ["prefix+o", "alt+shift+o"]
+type = "shell"
+command = 'bash "$HOME/.config/herdr/scripts/annotate-pane.sh" --newest'
 description = "review the agent's newest reply"
 
 # Reconnect saved SSH machines stuck on "! auth" (passphrase prompt in a popup)
