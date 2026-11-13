@@ -36,6 +36,18 @@ read -r count root bottom_right < <(printf '%s' "$layout" | jq -r '
   | (map(select(.rect.x == $right)) | max_by(.rect.y) | .pane_id) as $bottom_right
   | "\($n) \($root) \($bottom_right)"')
 
+# The review is of an agent's reply and the feedback is sent back to that agent. When the
+# focused pane is not an agent (a shell, or an earlier review pane), use the tab's agent
+# instead: the left-most, then top-most one. Otherwise the feedback only reaches the clipboard.
+agents=$(herdr agent list | jq -c '[.result.agents[].pane_id]')
+agent=$(printf '%s' "$layout" | jq -r --arg pane "$pane" --argjson agents "$agents" '
+  .result.layout.panes
+  | map(select(.pane_id as $id | $agents | index($id)))
+  | if any(.pane_id == $pane) then $pane
+    else (sort_by(.rect.x, .rect.y) | first | .pane_id) // $pane end')
+pane="$agent"
+export HERDR_ACTIVE_PANE_ID="$pane"
+
 if [ "$count" -le 1 ]; then
   export ANNOTATE_PANE_DIRECTION=right ANNOTATE_PANE_TARGET="$root"
 else

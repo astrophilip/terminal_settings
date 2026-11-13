@@ -53,9 +53,15 @@ keybind = super+shift+up=csi:1;4A
 keybind = super+shift+down=csi:1;4B
 
 # cmd+shift+n / i / c / o open herdr's side panes (new pane, ipython, coding agent, review of
-# the agent's newest reply), which herdr/config.toml binds to alt+shift+n / i / c / o. Sent as
+# the agent's newest reply) and cmd+shift+m its reconnect-machines popup, which
+# herdr/config.toml binds to alt+shift+n / i / c / o / m. Sent as
 # those alt+shift letters in kitty-protocol form (code;4u = shift+alt), for the same reason.
 keybind = super+shift+n=csi:110;4u
 keybind = super+shift+i=csi:105;4u
 keybind = super+shift+c=csi:99;4u
 keybind = super+shift+o=csi:111;4u
+keybind = super+shift+m=csi:109;4u
+
+# cmd+shift+plus opens a new herdr tab (alt+shift+plus in herdr/config.toml), sent the same
+# way. Replaces Ghostty's cmd+plus font-size increase on that chord; cmd+= still does it.
+keybind = super+shift+equal=csi:43;4u

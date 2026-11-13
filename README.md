@@ -6,7 +6,7 @@
 | `windows-terminal/Fragments/terminal_settings/ghostty-palette.json` | `%LOCALAPPDATA%\Microsoft\Windows Terminal\Fragments\terminal_settings\ghostty-palette.json` |
 | `windows-terminal/settings-snippet.jsonc` | merge into `%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json` |
 | `herdr/config.toml` | macOS: `~/.config/herdr/config.toml` · Windows: `%APPDATA%\herdr\config.toml` |
-| `herdr/scripts/reconnect-machines.sh` | `~/.config/herdr/scripts/reconnect-machines.sh` (popup bound to `prefix+m`) |
+| `herdr/scripts/reconnect-machines.sh` | `~/.config/herdr/scripts/reconnect-machines.sh` (popup bound to `prefix+m` or `alt+shift+m`, `cmd+shift+m` on macOS) |
 | `herdr/scripts/split-pane.sh` | `~/.config/herdr/scripts/split-pane.sh` (new pane on `prefix+n` or `alt+shift+n`, `cmd+shift+n` on macOS; first split right, later ones stacked on the right) |
 | `herdr/scripts/annotate-pane.sh` | `~/.config/herdr/scripts/annotate-pane.sh` (review pane on `prefix+o` / `prefix+shift+o`, newest reply also on `alt+shift+o`, `cmd+shift+o` on macOS; placed like `split-pane.sh`) |
 | `herdr/scripts/herdr-shim.sh` | `~/.config/herdr/scripts/herdr-shim.sh` (used by `annotate-pane.sh`) |

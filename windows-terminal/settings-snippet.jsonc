@@ -14,19 +14,23 @@
   // them from a plain Tab even in a shell pane. Same trick as in ghostty/config.ghostty.
   "actions": [
     { "command": { "action": "sendInput", "input": "\u001b[9;5u" }, "id": "User.HerdrNextTab" },
-    { "command": { "action": "sendInput", "input": "\u001b[9;6u" }, "id": "User.HerdrPrevTab" }
+    { "command": { "action": "sendInput", "input": "\u001b[9;6u" }, "id": "User.HerdrPrevTab" },
+    // alt+shift+plus opens a new herdr tab; by default Windows Terminal splits its own pane
+    // with it. Sent as a kitty-protocol key code too, so shift and alt both reach herdr.
+    { "command": { "action": "sendInput", "input": "\u001b[43;4u" }, "id": "User.HerdrNewTab" }
   ],
   "keybindings": [
     { "keys": "ctrl+tab", "id": "User.HerdrNextTab" },
     { "keys": "ctrl+shift+tab", "id": "User.HerdrPrevTab" },
+    { "keys": "alt+shift+plus", "id": "User.HerdrNewTab" },
     // ctrl+shift+arrows resize herdr panes; by default Windows Terminal uses up/down to
     // scroll a line (ctrl+shift+pgup/pgdn and the mouse wheel still scroll) and leaves
     // left/right unbound.
     { "keys": "ctrl+shift+up", "id": "unbound" },
     { "keys": "ctrl+shift+down", "id": "unbound" },
     // alt+shift+left/right cycle herdr panes and alt+shift+up/down its workspaces; by default
-    // Windows Terminal uses them to resize its own panes (alt+shift+plus / alt+shift+- still
-    // split, alt+arrows still move focus).
+    // Windows Terminal uses them to resize its own panes (alt+shift+- still splits,
+    // alt+arrows still move focus).
     { "keys": "alt+shift+up", "id": "unbound" },
     { "keys": "alt+shift+down", "id": "unbound" },
     { "keys": "alt+shift+left", "id": "unbound" },
