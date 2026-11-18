@@ -5,6 +5,9 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
 alias gst="git status"
+# Everything since the last commit, staged or not, new files included: `add -N` marks
+# untracked files as intended-to-add (contents not staged) so they show up in the diff.
+alias gd='git add -N :/ && git diff HEAD'
 alias gl="git log --graph --pretty=format:'%Cgreen%h%Creset -%C(blue)%d%Creset %s %Cgreen(%cr)%Creset'"
 alias grep="grep --color=auto"
 # bat as cat: syntax highlighting, no line numbers/header, never pages (plain `bat` still does).

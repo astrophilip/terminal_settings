@@ -84,11 +84,13 @@ herdr pane run "$p" '$AI_AGENT'
 description = "coding agent in a side pane"
 
 # Herdr Annotate (Full) — document review with plannotator-tui. annotate.open and the Lite-style
-# annotation keys are intentionally unbound. prefix+o was freed above. Both keys run
+# annotation keys are intentionally unbound. prefix+o was freed above. The picker also takes
+# alt+shift+0 (cmd+shift+0 on macOS), the key above o. Ghostty sends that chord as
+# alt+shift+), the character shift+0 types, so both spellings are bound. Both commands run
 # scripts/annotate-pane.sh, which opens the review pane in the split-pane.sh shape (the
 # plugin's own actions only split beside the agent's pane; see the script and herdr-shim.sh).
 [[keys.command]]
-key = "prefix+shift+o"
+key = ["prefix+shift+o", "alt+shift+0", "alt+shift+)"]
 type = "shell"
 command = 'bash "$HOME/.config/herdr/scripts/annotate-pane.sh"'
 description = "pick one of the agent's recent replies to review"

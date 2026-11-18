@@ -8,8 +8,10 @@
 | `herdr/config.toml` | macOS: `~/.config/herdr/config.toml` · Windows: `%APPDATA%\herdr\config.toml` |
 | `herdr/scripts/reconnect-machines.sh` | `~/.config/herdr/scripts/reconnect-machines.sh` (popup bound to `prefix+m` or `alt+shift+m`, `cmd+shift+m` on macOS) |
 | `herdr/scripts/split-pane.sh` | `~/.config/herdr/scripts/split-pane.sh` (new pane on `prefix+n` or `alt+shift+n`, `cmd+shift+n` on macOS; first split right, later ones stacked on the right) |
-| `herdr/scripts/annotate-pane.sh` | `~/.config/herdr/scripts/annotate-pane.sh` (review pane on `prefix+o` / `prefix+shift+o`, newest reply also on `alt+shift+o`, `cmd+shift+o` on macOS; placed like `split-pane.sh`) |
+| `herdr/scripts/annotate-pane.sh` | `~/.config/herdr/scripts/annotate-pane.sh` (review pane on `prefix+o` / `prefix+shift+o`, also on `alt+shift+o` (newest reply) / `alt+shift+0` (picker), `cmd+shift+o` / `cmd+shift+0` on macOS; placed like `split-pane.sh`) |
 | `herdr/scripts/herdr-shim.sh` | `~/.config/herdr/scripts/herdr-shim.sh` (used by `annotate-pane.sh`) |
+| `herdr/scripts/show-image.sh` | `~/.config/herdr/scripts/show-image.sh` (opens an image in a new pane placed like `split-pane.sh`, keeping focus where it was; Claude uses it for plots) |
+| `herdr/scripts/image-view.py` | `~/.config/herdr/scripts/image-view.py` (the viewer `show-image.sh` runs: chafa kitty graphics, redraws on resize, closes on `q` or its ✕ box; needs `chafa` and `python3`) |
 | `codex/config-snippet.toml` | merge into `~/.codex/config.toml` (Windows: `%USERPROFILE%\.codex\config.toml`) |
 | `claude/statusline-command.sh` | `~/.claude/statusline-command.sh` |
 | `claude/cost-refresh.py` | `~/.claude/cost-refresh.py` (same directory as the status line script) |

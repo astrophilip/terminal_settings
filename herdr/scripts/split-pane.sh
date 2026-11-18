@@ -4,11 +4,16 @@
 # right-hand column, leaving the left pane alone. Prints the new pane's id.
 #
 # Usage: split-pane.sh [PANE_ID] [extra `herdr pane split` options, e.g. --cwd DIR]
-# PANE_ID picks the tab (default: the focused pane's tab).
+# PANE_ID picks the tab (default: the focused pane's tab). The new pane takes focus unless
+# --no-focus is among the options.
 set -euo pipefail
 
 pane="${1:-}"
 [ $# -gt 0 ] && shift
+focus=--focus
+for arg in "$@"; do
+  [ "$arg" = --no-focus ] && focus=
+done
 
 layout=$(herdr pane layout ${pane:+--pane "$pane"})
 read -r count target < <(printf '%s' "$layout" | jq -r '
@@ -19,7 +24,7 @@ read -r count target < <(printf '%s' "$layout" | jq -r '
   | "\($n) \($bottom_right)"')
 
 if [ "$count" -le 1 ]; then
-  herdr pane split ${pane:+--pane "$pane"} --direction right --focus "$@"
+  herdr pane split ${pane:+--pane "$pane"} --direction right ${focus:+"$focus"} "$@"
 else
-  herdr pane split --pane "$target" --direction down --focus "$@"
+  herdr pane split --pane "$target" --direction down ${focus:+"$focus"} "$@"
 fi | jq -r .result.pane.pane_id
