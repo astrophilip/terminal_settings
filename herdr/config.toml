@@ -26,6 +26,9 @@ next_tab = ["prefix+tab", "prefix+shift+right", "ctrl+tab"]
 previous_tab = ["prefix+shift+tab", "prefix+shift+left", "ctrl+shift+tab"]
 new_tab = ["prefix+plus", "alt+shift+plus"]     # herdr default: prefix+c
 
+# Close pane: alt+shift+x too (cmd+shift+x on macOS).
+close_pane = ["prefix+x", "alt+shift+x"]
+
 # Detach on prefix+d, as in tmux (herdr default: prefix+q).
 detach = "prefix+d"
 
@@ -62,14 +65,14 @@ command = 'bash "$HOME/.config/herdr/scripts/split-pane.sh" >/dev/null'
 description = "new pane (right, then stacked on the right)"
 
 # Side panes, placed the same way. Waiting for the prompt stops the command echoing twice,
-# and the new pane's shell expands $AI_AGENT.
+# and the new pane's shell expands $AI_AGENT and $HERDR_PANE_ID.
 [[keys.command]]
 key = ["prefix+i", "alt+shift+i"]
 type = "shell"
 command = '''
 p=$(bash "$HOME/.config/herdr/scripts/split-pane.sh")
 herdr pane wait-output "$p" --regex '\S' --timeout 5000 >/dev/null
-herdr pane run "$p" ipython
+herdr pane run "$p" 'ipython && herdr pane close "$HERDR_PANE_ID"'
 '''
 description = "ipython in a side pane"
 

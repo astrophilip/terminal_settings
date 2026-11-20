@@ -63,6 +63,9 @@ keybind = super+shift+o=csi:111;4u
 keybind = super+shift+0=csi:41;4u
 keybind = super+shift+m=csi:109;4u
 
+# cmd+shift+x closes the focused herdr pane (alt+shift+x in herdr/config.toml), sent the same way.
+keybind = super+shift+x=csi:120;4u
+
 # cmd+shift+plus opens a new herdr tab (alt+shift+plus in herdr/config.toml), sent the same
 # way. Replaces Ghostty's cmd+plus font-size increase on that chord; cmd+= still does it.
 keybind = super+shift+equal=csi:43;4u
