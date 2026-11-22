@@ -31,3 +31,6 @@ __pycache__/
 
 # vim swap files
 *.swp
+
+# Local session handoff notes
+HANDOFF.md
