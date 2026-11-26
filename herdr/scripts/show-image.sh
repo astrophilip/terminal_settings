@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Show an image in a new herdr pane, placed like split-pane.sh (beside a lone pane, otherwise
 # under the bottom of the right-hand column), without taking focus from the calling pane.
-# The pane runs image-view.py, which closes the pane on q or a click on its close box.
+# The pane runs image-view.py, which closes the pane on q.
 # Prints the new pane's id.
 #
 # Usage: show-image.sh IMAGE
